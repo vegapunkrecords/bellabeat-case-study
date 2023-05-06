@@ -1,0 +1,65 @@
+# Changelog
+This txt-file contains notable changes to the raw data file (most recent alterations first).
+
+
+Version 1
+
+dailyActivity_merged.csv
+# New
+
+	- checked for and removed all duplicates (0 duplicate entries found).
+	- used =COUNTIF(E2:E941, ">0") and =COUNTIF(I2:I941, ">0") functions to verify that "LoggedActivitiesDistance" [F] and "SedentaryActiveDistance" [J] were not entirely populated by 0 values.
+	- used =COUNTIF(A2:A941,REPT("?",Q11)&"*") formula [where Q11 = 10] to verify that there were no entries in the "Id" column [A] exceeding the standard 10 characters.
+	- used =IF(D2:D941=E2:E941,"Match", " ") formula to verify that the "TotalDistance" [D] and "TrackerDistance" [E] columns had matching values.
+	- to avoid redundancies, deleted "TrackerDistance" column [E] and renamed "TotalDistance" column [D] to "TotalTrackerDistance".
+	- updated "ActivityDate" column [B] to YYYY-MM-DD format and renamed field to "Date" for congruity with the other datasets.
+
+
+sleepDay_merged.csv
+# New
+
+	- checked for and removed all duplicates (3 duplicate entries found and removed).
+	- used =COUNTIF(A2:A411,REPT("?",I5)&"*") formula [Where I5 = 10] to verify that there were no entries in the "Id" column [A] exceeding the standard 10 characters.
+	- simplified "SleepDay" column [B] to display only dates (in YYYY-MM-DD format) as all times are listed as "12:00:00 AM" throughout the dataset
+
+
+weightLogInfo_merged.csv
+# New
+
+	- checked for and removed all duplicates (0 duplicate entries found).
+	- manually verified that each date matched a unique entry and simplified date/time format to only dates (in YYYY-MM-DD format).
+	- re-formated LogId entries to read as whole numbers (listed as 1.46...+12).
+	- removed "Fat" column [E] as there are only 2 out ouf a possible 67 entries, skewing results.
+	- used =COUNTIF(F2:F68,"TRUE")+COUNTIF(F2:F68,"FALSE") function to check for spelling errors and verify that the only values in the "IsManualReport" column [now F] were "TRUE" and "FALSE".
+
+
+dailyIntensities_merged.csv
+# New
+
+	- checked for and removed all duplicates (0 duplicate entries found).
+	- used =COUNTIF(A2:A941,REPT("?",O7)&"*") formula [Where O7 = 10] to verify that there were no entries in the "Id" column [A] exceeding the standard 10 characters.
+	- updated "ActivityDate" column [B] to YYYY-MM-DD format and renamed field to "Date" for congruity with the other datasets.
+
+hourlySteps_merged.csv
+# New
+
+	- checked for and removed all duplicates (0 duplicate entries found).
+	- used =COUNTIF(A2:A22100,REPT("?",H3)&"*") formula [Where H3 = 10] to verify that there were no entries in the "Id" column [A] exceeding the standard 10 characters.
+	- updated "SleepDay" field to "Date" for congruity with the other datasets.
+
+
+hourlyIntensities_merged.csv
+# New
+
+	- checked for and removed all duplicates (0 duplicate entries found).
+	- used =COUNTIF(A2:A22100,REPT("?",H3)&"*") formula [Where H3 = 10] to verify that there were no entries in the "Id" column [A] exceeding the standard 10 characters.
+	- noticed that both hourlySteps_merged.csv and hourlyIntensities_merged.csv had the same number of Id entries, copied hourlySteps_merged.csv values and pasted them into hourlyIntensities_merged.csv document
+	- used =IF(EXACT(A2:A22100,G2:G22100), "Match", "N/A") formula to verify that both "Id" columns [for hourlySteps and hourlyIntensities] had matching values, then check that both "ActivityHour" columns also had matching values
+	- combined both sheets into one, deleted duplicate columns ("Id" and "ActivityHour") and renamed sheet to hourlyStepsAndIntensities_merged.csv
+
+
+
+
+
+
+
